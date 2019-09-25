@@ -2,7 +2,9 @@ package ab.tjl.gmall.bean;
 
 import javax.persistence.Id;
 import java.io.Serializable;
-
+/**
+ * Descrption: 商品品牌
+ */
 public class PmsBrand  implements Serializable {
 
     @Id

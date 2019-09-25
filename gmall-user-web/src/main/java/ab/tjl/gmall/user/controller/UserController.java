@@ -23,7 +23,11 @@ public class UserController {
     @Reference
     private UserService userService;
 
-
+    /**
+     * Descrption: 用户收货地址
+     * @Param: [memberId]
+     * @Return: java.util.List<ab.tjl.gmall.bean.UmsMemberReceiveAddress>
+     */
     @RequestMapping("/getReceiveAddressByMemberId")
     @ResponseBody
     public List<UmsMemberReceiveAddress>  getReceiveAddressByMemberId(String memberId){
@@ -31,6 +35,11 @@ public class UserController {
         return umsMemberReceiveAddresses;
     }
 
+    /**
+     * Descrption:查询所有用户
+     * @Param: []
+     * @Return: java.util.List<ab.tjl.gmall.bean.UmsMember>
+     */
     @RequestMapping("/getAllUser")
     @ResponseBody
     public List<UmsMember>  getAllUser(){

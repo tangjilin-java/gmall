@@ -2,15 +2,19 @@ package ab.tjl.gmall.manage.service.impl;
 
 import ab.tjl.gmall.bean.PmsBaseAttrInfo;
 import ab.tjl.gmall.bean.PmsBaseAttrValue;
+import ab.tjl.gmall.bean.PmsBaseSaleAttr;
 import ab.tjl.gmall.manage.mapper.PmsBaseAttrInfoMapper;
 import ab.tjl.gmall.manage.mapper.PmsBaseAttrValueMapper;
+import ab.tjl.gmall.manage.mapper.PmsBaseSaleAttrMappper;
 import ab.tjl.gmall.service.AttrService;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author:tangjilin
@@ -25,6 +29,8 @@ public class AttrServiceImpl implements AttrService {
     PmsBaseAttrInfoMapper pmsBaseAttrInfoMapper;
     @Autowired
     PmsBaseAttrValueMapper pmsBaseAttrValueMapper;
+    @Autowired
+    PmsBaseSaleAttrMappper pmsBaseSaleAttrMappper;
 
     @Override
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
@@ -32,6 +38,13 @@ public class AttrServiceImpl implements AttrService {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.select(pmsBaseAttrInfo);
+        for (PmsBaseAttrInfo baseAttrInfo : pmsBaseAttrInfos) {
+            List<PmsBaseAttrValue> pmsBaseAttrValues = new ArrayList<>();
+            PmsBaseAttrValue pmsBaseAttrValue = new PmsBaseAttrValue();
+            pmsBaseAttrValue.setAttrId(baseAttrInfo.getId());
+            pmsBaseAttrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
+            baseAttrInfo.setAttrValueList(pmsBaseAttrValues);
+        }
         return pmsBaseAttrInfos;
     }
 
@@ -82,5 +95,19 @@ public class AttrServiceImpl implements AttrService {
         pmsBaseAttrValue.setAttrId(attrId);
         List<PmsBaseAttrValue> pmsBaseAttrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
         return pmsBaseAttrValues;
+    }
+
+    @Override
+    public List<PmsBaseSaleAttr> baseSaleAttrList() {
+        return pmsBaseSaleAttrMappper.selectAll();
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getAttrValueListByValueId(Set<String> valueIdSet) {
+
+        String valueIdStr = StringUtils.join(valueIdSet, ",");//41,45,46
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.selectAttrValueListByValueId(valueIdStr);
+
+        return pmsBaseAttrInfos;
     }
 }

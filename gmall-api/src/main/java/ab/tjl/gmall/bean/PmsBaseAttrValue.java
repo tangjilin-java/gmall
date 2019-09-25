@@ -6,9 +6,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
- * Descrption:平台属性功能
- * @Param:
- * @Return:
+ * Descrption:平台属性值
  */
 public class PmsBaseAttrValue implements Serializable {
     @Id

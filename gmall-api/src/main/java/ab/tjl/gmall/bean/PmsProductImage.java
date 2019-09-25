@@ -5,8 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * @param
- * @return
+ * Descrption: 商品图片
  */
 public class PmsProductImage implements Serializable {
 

@@ -2,8 +2,10 @@ package ab.tjl.gmall.service;
 
 import ab.tjl.gmall.bean.PmsBaseAttrInfo;
 import ab.tjl.gmall.bean.PmsBaseAttrValue;
+import ab.tjl.gmall.bean.PmsBaseSaleAttr;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author:tangjilin
@@ -17,4 +19,8 @@ public interface AttrService {
     String saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
 
     List<PmsBaseAttrValue> getAttrValueList(String attrId);
+
+    List<PmsBaseSaleAttr> baseSaleAttrList();
+
+    List<PmsBaseAttrInfo> getAttrValueListByValueId(Set<String> valueIdSet);
 }

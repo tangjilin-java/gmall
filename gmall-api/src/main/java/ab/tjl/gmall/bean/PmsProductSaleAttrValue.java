@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
-
+/**
+ * Descrption: 商品销售属性值
+ */
 public class PmsProductSaleAttrValue implements Serializable {
     @Id
     @Column

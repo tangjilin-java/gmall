@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author:tangjilin
- * @Description:后台平台属性管理列表
+ * @Description:后台平台三级目录属性管理列表
  * @Date:Created in 16:24 2019/9/8
  * @Modified By:
  */
@@ -24,6 +24,11 @@ public class CatalogController {
     @Reference
     CatalogService catalogService;
 
+    /**
+     * Descrption: 获取三级目录
+     * @Param: [catalog2Id]
+     * @Return: java.util.List<ab.tjl.gmall.bean.PmsBaseCatalog3>
+     */
     @RequestMapping("/getCatalog3")
     @ResponseBody
     public List<PmsBaseCatalog3> getCatalog3(String catalog2Id){
@@ -32,6 +37,11 @@ public class CatalogController {
         return catalog1s;
     }
 
+    /**
+     * Descrption: 获取二级目录
+     * @Param: [catalog1Id]
+     * @Return: java.util.List<ab.tjl.gmall.bean.PmsBaseCatalog2>
+     */
     @RequestMapping("/getCatalog2")
     @ResponseBody
     public List<PmsBaseCatalog2> getCatalog2(String catalog1Id){
@@ -40,6 +50,11 @@ public class CatalogController {
         return catalog1s;
     }
 
+    /**
+     * Descrption:获取一级目录
+     * @Param: []
+     * @Return: java.util.List<ab.tjl.gmall.bean.PmsBaseCatalog1>
+     */
     @RequestMapping("/getCatalog1")
     @ResponseBody
     public List<PmsBaseCatalog1> getCatalog1(){

@@ -7,8 +7,6 @@ import java.util.List;
 
 /**
  * Descrption: 二级条目
- * @Param:
- * @Return:
  */
 public class PmsBaseCatalog2 implements Serializable {
     @Id

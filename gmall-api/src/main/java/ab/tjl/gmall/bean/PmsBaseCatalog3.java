@@ -4,10 +4,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * @author:tangjilin
  * @Description:三级条目
- * @Date:Created in 16:32 2019/9/8
- * @Modified By:
  */
 public class PmsBaseCatalog3 implements Serializable {
 

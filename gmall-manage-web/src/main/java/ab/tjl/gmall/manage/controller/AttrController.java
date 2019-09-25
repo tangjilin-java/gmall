@@ -2,6 +2,7 @@ package ab.tjl.gmall.manage.controller;
 
 import ab.tjl.gmall.bean.PmsBaseAttrInfo;
 import ab.tjl.gmall.bean.PmsBaseAttrValue;
+import ab.tjl.gmall.bean.PmsBaseSaleAttr;
 import ab.tjl.gmall.service.AttrService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 /**
@@ -24,6 +24,19 @@ public class AttrController {
 
     @Reference
     AttrService attrService;
+
+    /**
+     * Descrption:后台销售基础信息
+     * @Param: []
+     * @Return: java.util.List<ab.tjl.gmall.bean.PmsBaseSaleAttr>
+     */
+    @RequestMapping("/baseSaleAttrList")
+    @ResponseBody
+    public List<PmsBaseSaleAttr> baseSaleAttrList(){
+
+        List<PmsBaseSaleAttr> pmsBaseSaleAttrs = attrService.baseSaleAttrList();
+        return pmsBaseSaleAttrs;
+    }
 
 
     /**

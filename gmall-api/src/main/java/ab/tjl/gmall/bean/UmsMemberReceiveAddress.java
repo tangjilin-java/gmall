@@ -2,11 +2,7 @@ package ab.tjl.gmall.bean;
 
 import javax.persistence.Id;
 import java.io.Serializable;
-/**
- * Descrption:用户收货地址
- * @Param:
- * @Return:
- */
+
 public class UmsMemberReceiveAddress implements Serializable {
 
     @Id

@@ -6,7 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ * Descrption: 商品销售属性
+ */
 public class PmsProductSaleAttr implements Serializable {
 
     @Id
@@ -24,7 +26,7 @@ public class PmsProductSaleAttr implements Serializable {
 
 
     @Transient
-    List<PmsProductSaleAttrValue> pmsProductSaleAttrValueList;
+    List<PmsProductSaleAttrValue> spuSaleAttrValueList;
 
     public String getId() {
         return id;
@@ -58,11 +60,11 @@ public class PmsProductSaleAttr implements Serializable {
         this.saleAttrName = saleAttrName;
     }
 
-    public List<PmsProductSaleAttrValue> getPmsProductSaleAttrValueList() {
-        return pmsProductSaleAttrValueList;
+    public List<PmsProductSaleAttrValue> getSpuSaleAttrValueList() {
+        return spuSaleAttrValueList;
     }
 
-    public void setPmsProductSaleAttrValueList(List<PmsProductSaleAttrValue> pmsProductSaleAttrValueList) {
-        this.pmsProductSaleAttrValueList = pmsProductSaleAttrValueList;
+    public void setSpuSaleAttrValueList(List<PmsProductSaleAttrValue> spuSaleAttrValueList) {
+        this.spuSaleAttrValueList = spuSaleAttrValueList;
     }
 }
