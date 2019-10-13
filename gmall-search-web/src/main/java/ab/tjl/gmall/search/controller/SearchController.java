@@ -1,5 +1,6 @@
 package ab.tjl.gmall.search.controller;
 
+import ab.tjl.gmall.annotations.LoginRequired;
 import ab.tjl.gmall.bean.*;
 import ab.tjl.gmall.service.AttrService;
 import ab.tjl.gmall.service.SearchService;
@@ -172,6 +173,7 @@ public class SearchController {
      * @Return: java.lang.String
      */
     @RequestMapping("/index")
+    @LoginRequired(loginSuccess = false)
     public String  index(){
         return "index";
     }

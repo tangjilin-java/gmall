@@ -5,8 +5,12 @@ import ab.tjl.gmall.bean.UmsMember;
 import ab.tjl.gmall.bean.UmsMemberReceiveAddress;
 import ab.tjl.gmall.user.mapper.UmsMemberReceiveAddressesMapper;
 import ab.tjl.gmall.user.mapper.UserMapper;
+import ab.tjl.gmall.util.RedisUtil;
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
 import java.util.List;
 
@@ -23,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private UmsMemberReceiveAddressesMapper umsMemberReceiveAddressesMapper;
+    @Autowired
+    RedisUtil redisUtil;
 
     @Override
     public List<UmsMember> getAllUser() {
@@ -46,6 +52,17 @@ public class UserServiceImpl implements UserService {
         e.createCriteria().andEqualTo(memberId);
         List<UmsMemberReceiveAddress> umsMemberReceiveAddresses = umsMemberReceiveAddressesMapper.selectByExample(e);
         */
-       return umsMemberReceiveAddresses;
+        return umsMemberReceiveAddresses;
     }
+
+    @Override
+    public UmsMember login(UmsMember umsMember) {
+        return null;
+    }
+
+    @Override
+    public void addUserToken(String token, String memberId) {
+
+    }
+
 }

@@ -121,5 +121,10 @@ public class CartServiceImpl implements CartService {
         flushCartCache(omsCartItem.getMemberId());
 
     }
+
+    @Override
+    public void delCart() {
+
+    }
 }
 

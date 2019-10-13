@@ -16,7 +16,7 @@ public class OmsOrder implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//主键返回策略
     private String id;
     private String memberId;
     private String couponId;

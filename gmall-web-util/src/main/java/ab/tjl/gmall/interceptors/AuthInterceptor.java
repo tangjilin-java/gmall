@@ -2,6 +2,7 @@ package ab.tjl.gmall.interceptors;
 
 import ab.tjl.gmall.annotations.LoginRequired;
 import ab.tjl.gmall.util.CookieUtil;
+import ab.tjl.gmall.util.HttpclientUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         LoginRequired methodAnnotation = hm.getMethodAnnotation(LoginRequired.class);
 
         StringBuffer url = request.getRequestURL();
-
+        System.out.println(url);
         // 是否拦截
         if (methodAnnotation == null) {
             return true;
@@ -57,9 +58,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                     ip = "127.0.0.1";
                 }
             }
-         //   String successJson  = HttpclientUtil.doGet("http://passport.gmall.com:8085/verify?token=" + token+"&currentIp="+ip);
+            String successJson = HttpclientUtil.doGet("http://passport.gmall.com:8085/verify?token=" + token+"&currentIp="+ip);
 
-          //  successMap = JSON.parseObject(successJson,Map.class);
+            successMap = JSON.parseObject(successJson,Map.class);
 
             success = successMap.get("status");
 
@@ -68,15 +69,15 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (loginSuccess) {
             // 必须登录成功才能使用
             if (!success.equals("success")) {
-                //重定向会passport登录
+                //重定向去passport登录
                 StringBuffer requestURL = request.getRequestURL();
                 response.sendRedirect("http://passport.gmall.com:8085/index?ReturnUrl="+requestURL);
                 return false;
             }
 
             // 需要将token携带的用户信息写入
-            request.setAttribute("memberId", successMap.get("memberId"));
-            request.setAttribute("nickname", successMap.get("nickname"));
+            request.setAttribute("memberId", successMap.get("memberId"));//successMap.get("memberId")
+            request.setAttribute("nickname",successMap.get("nickname"));//successMap.get("nickname")
             //验证通过，覆盖cookie中的token
             if(StringUtils.isNotBlank(token)){
                 CookieUtil.setCookie(request,response,"oldToken",token,60*60*2,true);
@@ -86,8 +87,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             // 没有登录也能用，但是必须验证
             if (success.equals("success")) {
                 // 需要将token携带的用户信息写入
-                request.setAttribute("memberId", successMap.get("memberId"));
-                request.setAttribute("nickname", successMap.get("nickname"));
+                request.setAttribute("memberId", successMap.get("memberId"));//successMap.get("memberId")
+                request.setAttribute("nickname",successMap.get("nickname"));//successMap.get("nickname")
 
                 //验证通过，覆盖cookie中的token
                 if(StringUtils.isNotBlank(token)){
